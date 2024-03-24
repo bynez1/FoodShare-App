@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Food Share</string>
+    <string name="active_donations">Active Donations</string>
+    <string name="food">Food:</string>
+    <string name="donor">Donor:</string>
+    <string name="Active_donations" />
+</resources>

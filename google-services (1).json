@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "350935200871",
+    "project_id": "donor-62d38",
+    "storage_bucket": "donor-62d38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350935200871:android:9764e50b049e1462c610c2",
+        "android_client_info": {
+          "package_name": "com.example.foodislife"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYSxecYZNeXw0nUiZmfrhi2AWyK-jRQqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

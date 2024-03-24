@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "324631844829",
+    "project_id": "food-share-9d411",
+    "storage_bucket": "food-share-9d411.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324631844829:android:7350536f82016344a74834",
+        "android_client_info": {
+          "package_name": "com.example.foodislife"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaCtl7jyUlJBMev30UVNeJf1GcSJwOroQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

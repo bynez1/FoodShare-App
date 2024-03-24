@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".RiderPortal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="122dp"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="133dp"
+        android:layout_marginEnd="129dp"
+        android:layout_marginBottom="182dp"
+
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieRdier"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:elevation="5dp"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/pickup" />
+
+    <Button
+        android:id="@+id/RiderLogin"
+        android:layout_width="149dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/lottieRdier"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="123dp"
+        android:layout_marginEnd="122dp"
+        android:layout_marginBottom="-252dp"
+        android:backgroundTint="#FC6736"
+        android:text="Login"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/riderID"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/round_login_edges"
+        android:hint="Rider ID"
+        android:maxLines="1"
+        android:textSize="16sp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/RiderLogin"/>
+    <EditText
+        android:id="@+id/riderPsw"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:inputType="textPassword"
+        android:background="@drawable/round_login_edges"
+        android:hint="Password"
+        android:maxLines="1"
+        android:textSize="16sp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/riderID"/>
+
+
+</RelativeLayout>
