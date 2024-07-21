@@ -1,30 +1,22 @@
 package com.example.foodislife;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Register extends AppCompatActivity {
 
@@ -53,8 +45,9 @@ public class Register extends AppCompatActivity {
 
         user_mail = findViewById(R.id.Usermail);
         pass_word = findViewById(R.id.Password);
-        Sub_Button = findViewById(R.id.SubButton);
+        Con_Password = findViewById(R.id.ConPassword);
         signin = findViewById(R.id.signin);
+        Sub_Button = findViewById(R.id.SubButton);
 
 
 
@@ -67,7 +60,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // redirecting to login
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(Register.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -80,14 +73,15 @@ public class Register extends AppCompatActivity {
                 final String email = user_mail.getText().toString().trim();
                 String password = pass_word.getText().toString().trim();
                 String ConPassword = Con_Password.getText().toString().trim();
-                final String Username = user_name.getText().toString().trim();
+                //final String Username = user_name.getText().toString().trim();
+
                 // checking for a valid address and password
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter Email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Please Enter Email", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Please Enter Password", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (!password.equals(ConPassword)) {
@@ -104,12 +98,15 @@ public class Register extends AppCompatActivity {
                                     Toast.makeText(Register.this, "Registration failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Intent intent = new Intent(Register.this, LoginActivity.class);
+                                    Toast.makeText(Register.this, "Registered Successfully.",
+                                            Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(Register.this,LoginActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }
                             }
                         });
-            }});
+            }
+        });
     }
 }

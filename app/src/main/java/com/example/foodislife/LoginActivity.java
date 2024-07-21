@@ -37,13 +37,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
 User_mail= findViewById(R.id.Usermail);
 pass_word= findViewById(R.id.Password);
 Login= findViewById(R.id.login);
 Signup = findViewById(R.id.Idsign);
 location = findViewById(R.id.lottielocation);
+
 
 
 
@@ -62,12 +63,16 @@ location = findViewById(R.id.lottielocation);
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 String email, password;
 
                 email = User_mail.getText().toString().trim();
                 password = pass_word.getText().toString().trim();
 
-
+                //Intent intent =new Intent(LoginActivity.this, HomePage.class);
+                //intent.putExtra("morris", email);
+                //startActivity(intent);
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Email is Required", Toast.LENGTH_SHORT).show();
@@ -82,9 +87,6 @@ location = findViewById(R.id.lottielocation);
                     pass_word.setError ("Password must be >= 6 Character");
                     return ;
                 }
-                Intent intent =new Intent(LoginActivity.this, HomePage.class);
-                intent.putExtra("morris", email);
-                startActivity(intent);
 
                 fAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -92,7 +94,7 @@ location = findViewById(R.id.lottielocation);
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getApplicationContext(), HomePage.class));
+                                    startActivity(new Intent(getApplicationContext(), cardviewDesign.class));
                                     finish();
                                 } else {
                                     Toast.makeText(getApplicationContext(), "failed" + task.getException().getMessage(),Toast.LENGTH_SHORT).show();
@@ -102,6 +104,8 @@ location = findViewById(R.id.lottielocation);
             }
 
         });
+
     }
+
 }
 

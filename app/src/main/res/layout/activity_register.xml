@@ -5,26 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FC6736"
-    tools:context=".LoginActivity">
+    tools:context=".Register">
 
 
     <!-- adding a transparent layout -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black"
-        android:alpha="0.7" >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="174dp"
-            android:layout_marginBottom="575dp"
-            android:src="@drawable/location" />
-
-    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:background="#fff"
             android:padding="28dp">
 
             <TextView
@@ -60,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Please log in to your account"
-                android:textSize="5dp"
+                android:textSize="5sp"
                 />
 
             <View
@@ -80,7 +65,16 @@
                 android:paddingEnd="20dp"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="0dp"
-                android:layout_marginTop="40dp" />
+                android:layout_marginTop="40dp"
+                android:textColorHint="#3c3c3c"
+                android:textColor="#3c3c3c"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.7"
+                android:background="@color/black" />
+
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"/>
@@ -91,6 +85,7 @@
                 android:layout_marginEnd="0dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/round_login_edges">
+
                 <EditText
                     android:id="@+id/Password"
                     android:layout_width="match_parent"
@@ -98,10 +93,35 @@
                     android:inputType="textPassword"
                     android:background="@drawable/round_login_edges"
                     android:hint="Password"
+                    android:textColorHint="#3c3c3c"
                     android:maxLines="1"
                     android:textSize="16sp"
                     android:paddingStart="20dp"
-                    android:paddingEnd="20dp" />
+                    android:paddingEnd="20dp"
+                    android:textColor="#3c3c3c"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/round_login_edges">
+
+                <EditText
+                    android:id="@+id/ConPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/round_login_edges"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textColor="#3c3c3c"
+                    android:textColorHint="#3c3c3c"
+                    android:textSize="16sp" />
 
             </RelativeLayout>
 
@@ -114,9 +134,10 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Remember me"
                     android:layout_centerVertical="true"
-                    android:alpha="0.7"/>
+                    android:alpha="0.7"
+                    android:text="Remember me"
+                    tools:ignore="TouchTargetSizeCheck" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -129,11 +150,13 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/SubButton"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:backgroundTint="#FC6736"
+                android:textColor="#fff"
                 android:text="Register"/>
 
             <View
@@ -150,7 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Already have an account?"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -158,11 +181,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
-                    android:text="Sign in"
+                    android:text="Sign In"
                     android:textAlignment="center"
-                    android:textColor="@color/gray"
-                    android:textSize="15dp"
-                    android:textStyle="bold"/>
+                    android:textColor="#0C2D57"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    tools:ignore="TextSizeCheck" />
+
             </LinearLayout>
 
 

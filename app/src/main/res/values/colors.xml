@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    //------------Chat Colors -------------
+    <color name="my_primary">#FC6736</color>
+    <color name="my_secondary">#FFB0B0</color>
+
+    <color name="off_white">#EFECEC</color>
+    <color name="light_gray">#C3C3C3</color>
+
+    <color name="chat_color_sender">#1E88E5</color>
+    <color name="chat_color_receiver">#7CB342</color>
+
+    //------------Ratings Colors------------
+    <color name="dialog_color">#FDD736</color>
+    <color name="dialog_color_1">#3B5796</color>
+
+
+    //------------FoodShare Colors-----------
     <color name="black">#000</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="white">#fff</color>

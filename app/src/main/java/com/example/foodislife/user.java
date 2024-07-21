@@ -4,11 +4,12 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class user
 {
-    String donor_name;
-    String fooditem;
+
+    String userid;
+    String Organization;
+    String foodtype;
     String phone;
     String description;
-    String userid;
     String address;
 
 
@@ -17,24 +18,22 @@ public class user
     }
 
 
-    public user(String donor_name, String fooditem, String phone, String description, String address, String userid) {
-        this.donor_name = donor_name;
-        this.fooditem = fooditem;
+    public user(String organization, String foodtype, String phone, String description, String address, String userid) {
+
+        this.Organization = organization;
+        this.foodtype = foodtype;
         this.phone = phone;
         this.description = description;
         this.address = address;
         this.userid = userid;
     }
 
+// getters
+    //public String getOrganization() {return Organization;}
 
+    public String getOrganization() {return Organization;}
 
-    public String getName() {
-        return donor_name;
-    }
-
-    public String getFood() {
-        return fooditem;
-    }
+    public String getFoodtype() {return foodtype;}
 
     public String getPhone() {
         return phone;

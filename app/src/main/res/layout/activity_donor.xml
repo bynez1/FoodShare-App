@@ -49,26 +49,7 @@
                         android:layout_height="wrap_content"
                         android:textColorHint="#0C2D57"
                         app:hintTextColor="@color/white"
-                        app:boxStrokeColor="@color/white">
-
-                        <EditText
-                            android:id="@+id/donorname"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:hint="Donor"
-                            android:textSize="20sp"
-                            android:fontFamily="sans-serif-black"
-                            android:inputType="text"
-                            android:textColor="#FC6736"
-                            android:textColorHint="@color/white"
-                            android:backgroundTint="@android:color/transparent"
-                            android:maxLines="1"
-                            android:singleLine="true"
-                            android:importantForAutofill="no"
-                            tools:ignore="UnusedAttribute" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
+                        app:boxStrokeColor="@color/white"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/itemError"
@@ -77,22 +58,57 @@
                         android:layout_marginTop="5dp"
                         android:textColorHint="#0C2D57"
                         app:hintTextColor="@color/white"
+                        app:boxStrokeColor="@color/white"/>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:textColorHint="#0C2D57"
+                        app:hintTextColor="@color/white"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif-black"
                         app:boxStrokeColor="@color/white">
 
                         <EditText
-                            android:id="@+id/fooditem"
+                            android:id="@+id/organization"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:hint="Food name"
+                            android:hint="Organization"
                             android:textSize="20sp"
                             android:fontFamily="sans-serif-black"
+                            android:inputType="textMultiLine"
+                            android:maxLines="10"
                             android:textColor="#FC6736"
                             android:textColorHint="@color/white"
-                            android:inputType="text"
                             android:backgroundTint="@android:color/transparent"
-                            android:maxLines="2"
-                            android:singleLine="true"
+                            android:importantForAutofill="no"
+                            tools:ignore="UnusedAttribute" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:textColorHint="#0C2D57"
+                        app:hintTextColor="@color/white"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif-black"
+                        app:boxStrokeColor="@color/white">
+
+                        <EditText
+                            android:id="@+id/foodtype"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:hint="Donation Name"
+                            android:textSize="20sp"
+                            android:fontFamily="sans-serif-black"
+                            android:inputType="textMultiLine"
+                            android:maxLines="10"
+                            android:textColor="#FC6736"
+                            android:textColorHint="@color/white"
+                            android:backgroundTint="@android:color/transparent"
                             android:importantForAutofill="no"
                             tools:ignore="UnusedAttribute" />
 

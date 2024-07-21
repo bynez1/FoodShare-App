@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".userList">
 
+
     <androidx.appcompat.widget.Toolbar
 
         android:id="@+id/toolbar"
@@ -16,21 +17,14 @@
         android:orientation="horizontal"
         android:padding="10dp">
 
-        <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:src="@drawable/burger"
-            app:tint="#ffff" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Active Donations"
             android:layout_marginStart="90dp"
-            android:textColor="#ffff"
+            android:text="Active Donations"
             android:textAllCaps="true"
-
-            >
+            android:textColor="#ffff">
 
 
         </TextView>
@@ -45,11 +39,10 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userlist"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
         android:layout_marginTop="20dp"
         android:clipToOutline="false"

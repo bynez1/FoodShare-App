@@ -5,8 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -32,9 +38,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -44,7 +48,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
-import com.google.firebase.firestore.ServerTimestamp;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,7 +61,7 @@ public class Donor extends AppCompatActivity implements OnMapReadyCallback, Goog
     LocationRequest mLocationRequest;
     private int REQUEST_CODE = 11;
     SupportMapFragment mapFragment;
-    EditText mFullName,mFoodItem,mDescription, mAddress,mPhone;
+    EditText mOrganization, mFoodType, mDescription, mAddress,mPhone;
     Button mSubmitBtn, acceptButton, rejectedButton;
 
     FirebaseAuth fAuth;
@@ -71,15 +75,22 @@ public class Donor extends AppCompatActivity implements OnMapReadyCallback, Goog
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donor);
-        mFullName = findViewById(R.id.donorname);
-        mFoodItem = findViewById(R.id.fooditem);
+        mOrganization = findViewById(R.id.organization);
+        mFoodType = findViewById(R.id.foodtype);
         mPhone = findViewById(R.id.phone);
         mDescription = findViewById(R.id.description);
         mAddress = findViewById(R.id.address);
         mSubmitBtn=findViewById(R.id.submit);
 
+        fAuth = FirebaseAuth.getInstance();
+        fstore = FirebaseFirestore.getInstance();
+
+
+
 
         databaseUser = FirebaseDatabase.getInstance().getReference().child("Donors");
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference Donate = database.getReference("Donors");
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.google_map);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -122,39 +133,48 @@ public class Donor extends AppCompatActivity implements OnMapReadyCallback, Goog
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,15));
         mMap.addMarker(markerOptions).showInfoWindow();
 
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU){
+            if (ContextCompat.checkSelfPermission(Donor.this,
+                    Manifest.permission.POST_NOTIFICATIONS) !=PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(Donor.this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
+            }
+        }
+
 
         mSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                makenotification();
+
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference Donate = database.getReference("Donors");
 
                 HashMap<String, Object> users = new HashMap<>();
-                String fullname = mFullName.getText().toString().trim();
-                String fooditem = mFoodItem.getText().toString().trim();
+                String Organization = mOrganization.getText().toString().trim();
+                String foodtype = mFoodType.getText().toString().trim();
                 String phone = mPhone.getText().toString().trim();
                 String description = mDescription.getText().toString().trim();
                 String address = mAddress.getText().toString().trim();
-                String id = databaseUser.push().getKey();
+                String id = databaseUser.child("Donor").push().getKey();
                 String type = "Donor";
 
-                user Users = new user(fullname, fooditem, phone, description, address, id);
+                user Users = new user(Organization, foodtype, phone, description, address, id);
 
 
-                if (TextUtils.isEmpty(fullname)) {
-                    mFullName.setError("Name is Required.");
+                if (TextUtils.isEmpty(Organization)) {
+                    mOrganization.setError(" A Name is Required.");
                     return;
                 }
-
-                if (TextUtils.isEmpty(fooditem)) {
-                    mFoodItem.setError("Required.");
+                if (TextUtils.isEmpty(foodtype)) {
+                    mFoodType.setError("Food Type is Required.");
                     return;
                 }
                 if (phone.length() < 10) {
                     mPhone.setError("Phone Number Must be >=10 Characters");
                     return;
                 }
-                if (TextUtils.isEmpty(fooditem)) {
+                if (TextUtils.isEmpty(description)) {
                     mDescription.setError("Required.");
                     return;
                 }
@@ -163,15 +183,20 @@ public class Donor extends AppCompatActivity implements OnMapReadyCallback, Goog
                     return;
                 }
 
+                //userID = fAuth.getCurrentUser().getUid();
+                //DocumentReference documentReference = fStore.collection("donate").document(userID);
+                //fstore.collection("user data");
+                FirebaseDatabase database1 = FirebaseDatabase.getInstance();
+                DatabaseReference Donate1 = database.getReference("Donors");
 
-                GeoPoint geoPoint = new GeoPoint(location.getLatitude(), location.getLongitude());
+                GeoPoint geoPoint = new GeoPoint(mLastLocation.getLatitude(), mLastLocation.getLongitude());
                 HashMap<String, Object> user = new HashMap<>();
-               // users.put("timestamp", FieldValue.serverTimestamp());
-               // users.put("name", fullname);
-                //users.put("food item", fooditem);
-                //users.put("phone", phone);
-               //users.put("description", description);
-               users.put("location", geoPoint);
+                users.put("timestamp", FieldValue.serverTimestamp());
+                users.put("name", Organization);
+                users.put("food item", foodtype);
+                users.put("phone", phone);
+                users.put("description", description);
+                users.put("location", geoPoint);
                 users.put("userid", id);
                 users.put("type", type);
 
@@ -180,10 +205,12 @@ public class Donor extends AppCompatActivity implements OnMapReadyCallback, Goog
                 Toast.makeText(Donor.this, "Donation Inserted", Toast.LENGTH_SHORT ).show();
 
 
-
             }
         });
+
+
     }
+
 
     @RequiresApi(api = Build.VERSION_CODES.S)
     @Override
@@ -217,5 +244,43 @@ public class Donor extends AppCompatActivity implements OnMapReadyCallback, Goog
                 Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();
             }
         }
+
     }
-}
+    //Notification method when a donation has been inserted from a donor
+    public void makenotification(){
+        String chanelId = "CHANNEL_ID_NOTIFICATION";
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), chanelId);
+        builder.setSmallIcon(R.drawable.notifications)
+                .setContentTitle("Donation Alert")
+                .setContentText("A donor has registered a donation")
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        Intent intent = new Intent(Donor.this, NotificationActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("data", "A Donor has Registered a Donation");
+
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),
+                0, intent, PendingIntent.FLAG_MUTABLE);
+        builder.setContentIntent(pendingIntent);
+        NotificationManager notificationManager = (NotificationManager)
+                getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                NotificationChannel notificationChannel =
+                        notificationManager.getNotificationChannel(chanelId);
+                if ( notificationChannel== null){
+                    int importance = NotificationManager.IMPORTANCE_HIGH;
+                    notificationChannel = new NotificationChannel(chanelId, "Donation", importance);
+                    notificationChannel.setLightColor(android.R.color.holo_blue_light);
+                    notificationChannel.enableVibration(true);
+                    notificationManager.createNotificationChannel(notificationChannel);
+                }
+
+            }
+        notificationManager.notify(0, builder.build());
+
+        }
+
+    }
+
